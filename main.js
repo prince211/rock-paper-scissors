@@ -29,7 +29,6 @@
 	var computer_score = 0;
 	
 	var gameType;
-	var clicks = 0;
 	
 	// score elements
 	var userScore = getById('score');
@@ -49,8 +48,11 @@
 	var results = getById('results');
 	hide(results);
 	
+	// the gameover screen and final results
 	var gameOver = getById('gameOver');
 	hide(gameOver);
+	var gameResults = getById('gameResults');
+	var finalResult = getById('finalResult');
 	
 		// get the intro element and the buttons for choosing a game type
 	var intro = getById('intro');
@@ -71,6 +73,11 @@
 	function enableGame() {
 		enable(userChoices);
 		hide(intro);
+		hide(gameOver);
+		score = 0;
+		computer_score = 0;
+		userScore.textContent = score;
+		compScore.textContent = computer_score;
 	}
 	
 	// add an onclick event to each button and disable them initially
@@ -123,41 +130,46 @@
 		
 		if(chosen === comp) {
 			results.textContent = DRAW;
-			// ugly repetive code. what can I do???
-			timeout();
 			results.innerHTML += MEH;
+			timeout();
 		} 
 		else if(chosen === 'rock' && comp === 'scissors') {
+			
 			results.textContent = USER_WINS;
+			results.innerHTML += SMILE;
+			
 			score += 1;
 			userScore.textContent = score;
 			timeout();
-			results.innerHTML += SMILE;
+			
 		}
 		else if(chosen === 'paper' && comp === 'rock') {
+			
 			results.textContent = USER_WINS;
+			results.innerHTML += SMILE;
+			
 			score += 1;
 			userScore.textContent = score;
 			timeout();
-			results.innerHTML += SMILE;
+			
 		}
 		else if(chosen === 'scissors' && comp === 'paper') {
 			results.textContent = USER_WINS;
+			results.innerHTML += SMILE;
+			
 			score += 1;
 			userScore.textContent = score;
 			timeout();
-			results.innerHTML += SMILE;
 		}
 		else {
 			results.textContent = COMP_WINS;
+			results.innerHTML += FROWN;
+			
 			computer_score +=1;
 			compScore.textContent = computer_score;
 			timeout();
-			results.innerHTML += FROWN;
 		}
 		
-		
-		console.log(clicks);
 	}
 		
 
@@ -202,6 +214,19 @@
 		    disappear(results);
 				enable(userChoices);
 				enable(compChoices);
+				if(score + computer_score == gameType) {
+					show(gameOver);
+					if(score > computer_score) {
+						finalResult.textContent = "You won " + score + " - " + computer_score + "!";
+					}
+					else {
+						finalResult.textContent = "You lost " + computer_score + " - " + score;
+					}
+					gameResults.appendChild(bestOf3);
+					gameResults.appendChild(bestOf5);
+				}
+
+				
 		}, 2000)
 	}
 })();
