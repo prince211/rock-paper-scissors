@@ -81,14 +81,14 @@ body {
 	opacity: 1;
 }
 
-#game,
+#user,
 #computer {
 	text-align: center;
 	position: absolute;
 	width: 100%;
 }
 
-#game {
+#user {
 	top: 0;
 	padding-top: 15px;
 	border-bottom: 1px solid #ddd;
@@ -100,11 +100,11 @@ body {
 	bottom: 15px;
 }
 
-#game button {
+#user button {
 	cursor: pointer;
 }
 
-#game button,
+#user button,
 #computer .computer-choice {
 	transition: opacity .2s ease-out;
 	-webkit-transition: opacity .2s ease-out;
@@ -120,15 +120,15 @@ body {
 	box-sizing: border-box;
 }
 
-#game button#rock {
+#user button#rock {
 	background: url(images/rock.jpg) 50% no-repeat;
 }
 
-#game button#paper {
+#user button#paper {
 	background: url(images/paper.jpg) 50% no-repeat;
 }
 
-#game button#scissors {
+#user button#scissors {
 	background: url(images/scissors.jpg) 50% no-repeat;
 	
 }
@@ -240,7 +240,7 @@ body {
 	background: rgba(0,0,0,.4);
 }
 
-#finalResult {
+#gameResultsText {
 	font-size: 24px;
 	font-weight: bold;
 	text-transform: uppercase;
